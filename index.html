@@ -121,6 +121,22 @@
             height: auto;
             z-index: 2; /* Asegura que el logo esté por encima del fondo pero por debajo del texto */
         }
+
+        .beta-tag {
+            position: absolute;
+            top: 110px; /* Ajusta este valor según la posición del logo */
+            left: 60px;
+            width: 50px;
+            text-align: center;
+            background-color: #1f5fb7;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 3; /* Asegura que esté por encima del logo */
+        }
+
         canvas {
             display: none;
         }
@@ -138,6 +154,7 @@
     </div>
 
     <img class="logo" src="./imgs/ficcion_media_logo.png" alt="Logo">
+    <div class="beta-tag">Beta</div> 
     <h1>Ficción Media - La 1</h1>
     <h3>¡Genere sus noticias para rolear como un auténtico reportero!</h3>
     <p style="text-align: center;">Este generador está desarrollado para crear noticias falsas en contexto de roleplay de servidores,<br> queda terminantemente prohibido para otros fines.</p>
@@ -156,7 +173,7 @@
 
            
     <h4>By David</h4>
-    <a href=""><img src="./imgs/discord_logo.png" alt="" width="80px"></a>
+    <a href="#"><img src="./imgs/discord_logo.png" alt="" width="80px"></a>
             
     <canvas id="canvas" width="500" height="300" style="display: none;"></canvas>
     <script>

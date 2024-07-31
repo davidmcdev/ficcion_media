@@ -1,6 +1,6 @@
 # Ficción Media
 
-<image style="text-align:center;" src="/imgs/ficcion_media_logo.png" alt=Logo Ficción Media">
+![Logo de Ficción Media](/imgs/logo_ficcion_media.ico)
 
 ¡Genere sus noticias para rolear como un auténtico reportero!
 

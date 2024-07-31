@@ -1,10 +1,9 @@
 # Ficción Media
+![Logo Ficción Media](https://davidcraft-dev.github.io/ficcion_media/imgs/ficcion_media_logo.png)
 
-![Logo de Ficción Media](/imgs/ficcion_media_logo.png)
 
-¡Genere sus noticias para rolear como un auténtico reportero!
+<center><b>¡Genere sus noticias para rolear como un auténtico reportero!</center>
 
-Este generador está desarrollado para crear noticias falsas en contexto de roleplay de servidores,
-queda terminantemente prohibido para otros fines.
+<center>Este generador está desarrollado para crear noticias falsas en contexto de roleplay de servidores, queda terminantemente prohibido para otros fines.</center>
 
-https://davidcraft-dev.github.io/ficcion_media/
+<center>[https://davidcraft-dev.github.io/ficcion_media/](https://davidcraft-dev.github.io/ficcion_media/)</center>

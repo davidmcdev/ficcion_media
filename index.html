@@ -137,6 +137,23 @@
             z-index: 3; /* Asegura que esté por encima del logo */
         }
 
+        .changelog{
+            position: absolute;
+            top: 110px;
+            left: 1020px;
+            width: 50px;
+            background: #fff;
+            width: 250px;
+            text-align: center;
+            color: #000;
+            padding: .5em;
+            border: 2px dashed #1f5fb7;
+        }
+
+        .changelog h3{
+            text-decoration: underline;
+        }
+
         canvas {
             display: none;
         }
@@ -155,9 +172,13 @@
 
     <img class="logo" src="./imgs/ficcion_media_logo.png" alt="Logo">
     <div class="beta-tag">Beta</div> 
+    <div class="changelog">
+        <h3>Novedades:</h3>
+        <p>V.1.0: Creación de la web y de los diferentes elementos y funcionalidades de esta. Aún en fase BETA.</p>
+    </div>
     <h1>Ficción Media - La 1</h1>
     <h3>¡Genere sus noticias para rolear como un auténtico reportero!</h3>
-    <p style="text-align: center;">Este generador está desarrollado para crear noticias falsas en contexto de roleplay de servidores,<br> queda terminantemente prohibido para otros fines.</p>
+    <p style="text-align: center;">Este generador está desarrollado para crear noticias falsas en contexto de roleplay en servidores,<br> queda terminantemente prohibido su uso para otros fines.</p>
     <input type="file" id="cargarImagen" accept="image/*" class="control" required>
     <br>
     <input type="text" id="modificarTexto" placeholder="Introduce el texto aquí" maxlength="44" autocomplete="off" class="control" required>

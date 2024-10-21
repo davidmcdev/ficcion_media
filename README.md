@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://davidcraft-dev.github.io/ficcion_media/imgs/ficcion_media_logo.png" alt="Logo Ficción Media" width="300"/>
+  <img src="https://raw.githubusercontent.com/DavidCraft-dev/ficcion_media/refs/heads/main/imgs/ficcion_media_logo.png" alt="Logo Ficción Media" width="300"/>
 </div>
 
 <center><b>¡Genere sus noticias para rolear como un auténtico reportero!</b></center>

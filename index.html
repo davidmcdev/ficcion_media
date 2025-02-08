@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./imgs/ficcion_media_logo.ico" type="image/x-icon">
     <title>Ficción Media</title>
+    <script>
+        // Cambia esta variable a true cuando el sitio esté en mantenimiento
+        const enMantenimiento = false;
+
+        if (enMantenimiento) {
+            window.location.href = "./ficcion_media/maintenance.html"; // Cambia la ruta si es necesario
+        }
+    </script>
     <style>
         body {
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

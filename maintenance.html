@@ -1,47 +1,117 @@
-<!-- maintenance.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./imgs/ficcion_media_logo.ico" type="image/x-icon">
-    <title>Modo de Mantenimiento</title>
+    <title>Minijuego: Click Rápido</title>
     <style>
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
             background-color: #f3f4f6;
-            color: #333;
+            margin: 0;
         }
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin: auto;
+
+        #game-container {
+            text-align: center;
         }
-        p {
-            margin: auto;
+
+        #start-button, #target-button {
             font-size: 1.2em;
-            color: #666;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        img{
-            margin: auto;
+        #target-button {
+            position: absolute;
+            display: none;
         }
 
-        iframe{
-            width: 50em;
-            height: 16em;
-            margin: auto;
+        #score, #timer {
+            font-size: 1.5em;
+            margin: 10px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h1>Ficción Media se encuentra en Mantenimiento 🤔</h1>
-    <img class="logo" src="./imgs/ficcion_media_logo.png" alt="Logo">
-    <p>Estamos trabajando para actualizar la experiencia del sitio con nuevas funcionalidades próximamente visisbles, disculpe las molestias.</p>
-    <br>
-    <p>Mientras esperas el mantenimiento, puedes jugar a este minijuego</p>
-    <iframe src="./game.html" frameborder="0"></iframe>
+    <div id="game-container">
+        <h1>Mini Juego: Click Rápido</h1>
+        <p>Haz clic en el botón tantas veces como puedas antes de que se acabe el tiempo.</p>
+        <button id="start-button">Iniciar Juego</button>
+        <div id="score">Puntuación: 0</div>
+        <div id="timer">Tiempo: 10s</div>
+        <button id="target-button">¡Clic!</button>
+    </div>
+
+    <script>
+        const startButton = document.getElementById("start-button");
+        const targetButton = document.getElementById("target-button");
+        const scoreDisplay = document.getElementById("score");
+        const timerDisplay = document.getElementById("timer");
+
+        let score = 0;
+        let timeLeft = 10;
+        let gameInterval;
+        let countdownInterval;
+
+        // Función para iniciar el juego
+        function startGame() {
+            score = 0;
+            timeLeft = 10;
+            scoreDisplay.textContent = `Puntuación: ${score}`;
+            timerDisplay.textContent = `Tiempo: ${timeLeft}s`;
+            startButton.style.display = "none";
+            targetButton.style.display = "inline";
+
+            // Intervalo para actualizar el tiempo
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Tiempo: ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+
+            // Intervalo para mover el botón
+            gameInterval = setInterval(moveButton, 700);
+        }
+
+        // Función para finalizar el juego
+        function endGame() {
+            clearInterval(gameInterval);
+            clearInterval(countdownInterval);
+            targetButton.style.display = "none";
+            startButton.style.display = "inline";
+            alert(`Has conseguido ${score} clicks ¿Podrás superarte?`);
+        }
+
+        // Función para mover el botón a una posición aleatoria
+        function moveButton() {
+            const maxX = window.innerWidth - targetButton.offsetWidth;
+            const maxY = window.innerHeight - targetButton.offsetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            targetButton.style.left = `${randomX}px`;
+            targetButton.style.top = `${randomY}px`;
+        }
+
+        // Evento de clic en el botón de objetivo
+        targetButton.addEventListener("click", () => {
+            score++;
+            scoreDisplay.textContent = `Puntuación: ${score}`;
+            moveButton();
+        });
+
+        // Evento de clic en el botón de inicio
+        startButton.addEventListener("click", startGame);
+    </script>
 </body>
 </html>

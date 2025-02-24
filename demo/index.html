@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../imgs/ficcion_media_logo.ico" type="image/x-icon">
+    <title>Ficción Media (DEMO)</title>
+    <script>
+        // Cambia esta variable a true cuando el sitio esté en mantenimiento
+        const enMantenimiento = false;
+
+        if (enMantenimiento) {
+            window.location.href = "./maintenance.html"; // Cambia la ruta si es necesario
+        }
+    </script>
+    <style>
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
+            color: white;
+            position: relative;
+        }
+        #carrusel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Asegura que el carrusel esté detrás del contenido */
+        }
+        #carrusel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #carrusel img.active {
+            opacity: 1;
+        }
+        #carrusel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Color de superposición */
+            backdrop-filter: blur(5px); /* Filtro de desenfoque */
+            z-index: 1; /* Asegura que el filtro esté sobre las imágenes */
+        }
+        #plantilla {
+            width: 500px;
+            height: 300px;
+            border: 2px solid #ccc;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .superpuesta {
+            position: absolute;
+            z-index: 0; /* Asegura que las imágenes estén por debajo del texto */
+        }
+        #textoPlantilla {
+            position: absolute;
+            color: #1bb1f7;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            bottom: 20px; /* Ajusta este valor para mover el texto más hacia abajo */
+            z-index: 100; /* Asegura que el texto esté por encima de las imágenes */
+        }
+        .control {
+            margin: 10px;
+        }
+        input[type="file"],
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 200px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="file"] {
+            cursor: pointer;
+        }
+        input[type="file"]:hover,
+        input[type="text"]:focus {
+            border-color: #1bb1f7;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1bb1f7;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #1493e6;
+            transform: scale(1.05);
+        }
+        button:active {
+            background-color: #0a74c1;
+            transform: scale(1);
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 150px; /* Ajusta el tamaño del logo aquí */
+            height: auto;
+            z-index: 2; /* Asegura que el logo esté por encima del fondo pero por debajo del texto */
+        }
+
+        .beta-tag {
+            position: absolute;
+            top: 110px; /* Ajusta este valor según la posición del logo */
+            left: 60px;
+            width: 100px;
+            text-align: center;
+            background-color: #1f5fb7;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 3; /* Asegura que esté por encima del logo */
+        }
+
+        .changelog{
+            position: absolute;
+            top: 110px;
+            left: 1020px;
+            width: 50px;
+            background: #fff;
+            width: 250px;
+            text-align: center;
+            color: #000;
+            padding: .5em;
+            border: 2px dashed #1f5fb7;
+        }
+
+        .changelog h3{
+            text-decoration: underline;
+        }
+
+        canvas {
+            display: none;
+        }
+
+        .footer li{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="carrusel">
+        <img src="../imgs/carrusel1.png" alt="Fondo 1" class="active">
+        <img src="../imgs/carrusel2.png" alt="Fondo 2">
+        <img src="../imgs/carrusel3.png" alt="Fondo 3">
+    </div>
+
+    <img class="logo" src="../imgs/ficcion_media_logo.png" alt="Logo">
+    <div class="beta-tag">Beta - DEMO</div> 
+    <div class="changelog">
+        <h3>Novedades:</h3>
+        <p>¡PRIMERA COLABORACIÓN CON LA HERRAMIENTA! Play News (Spain RP) se une a la herramienta de Ficcón Media para que sus reporteros puedan generar notocias profesionales en el roleplay</p>
+        <h3>Novedades:</h3>
+        <p>V.1.0: Creación de la web y de los diferentes elementos y funcionalidades de esta. Aún en fase BETA.</p>
+    </div>
+    <h1>Ficción Media - Tu web para las TV de roleplay (DEMO)</h1>
+    <h3>¡Genera tus noticias para rolear como un auténtico reportero!</h3>
+    <p style="text-align: center;">Este generador está desarrollado para crear noticias falsas en contexto de roleplay en servidores,<br> queda terminantemente prohibido su uso para otros fines.</p>
+    <input type="file" id="cargarImagen" accept="image/*" class="control" required>
+    <br>
+    <input type="text" id="modificarTexto" placeholder="Introduce el texto aquí" maxlength="44" autocomplete="off" class="control" required>
+    <br>
+    <h1>Vista previa:</h1>
+    <div id="plantilla">
+        <div id="textoPlantilla">Texto de ejemplo</div>
+        <img src="../imgs/Logo_TVE-1.svg.png" class="superpuesta" style="top: 10px; right: 10px; width: 80px; height: 70px;">
+        <img src="../imgs/plantilla_lower_third.png" class="superpuesta" style="bottom: 0px; left: 0px; width: 500px; height: 250px;"">
+    </div>
+    <br>
+    <button id="descargar" class="control">Descargar Resultado</button>
+
+           
+    <h4>By David</h4>
+    <a href="#"><img src="../imgs/discord_logo.png" alt="" width="80px"></a>
+            
+    <canvas id="canvas" width="500" height="300" style="display: none;"></canvas>
+    <script>
+      document.getElementById('cargarImagen').addEventListener('change', function(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        imagenDeFondo = new Image();
+        imagenDeFondo.onload = function() {
+            actualizarCanvas();
+        }
+        imagenDeFondo.src = reader.result;
+        document.getElementById('plantilla').style.backgroundImage = `url(${reader.result})`;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+});
+
+document.getElementById('modificarTexto').addEventListener('input', function() {
+    document.getElementById('textoPlantilla').innerText = this.value;
+    actualizarCanvas();
+});
+
+document.getElementById('descargar').addEventListener('click', function() {
+    const enlace = document.createElement('a');
+    enlace.href = document.getElementById('canvas').toDataURL('image/png');
+    enlace.download = 'noticia.png';
+    enlace.click();
+});
+
+function actualizarCanvas() {
+    const canvas = document.getElementById('canvas');
+    const contexto = canvas.getContext('2d');
+    contexto.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibuja la imagen de fondo si existe
+    if (imagenDeFondo) {
+        contexto.drawImage(imagenDeFondo, 0, 0, canvas.width, canvas.height);
+    }
+
+    // Cargar y dibujar imágenes superpuestas en orden
+    const imagenes = Array.from(document.getElementsByClassName('superpuesta'));
+    const promesas = imagenes.map(img => {
+        return new Promise(resolve => {
+            const imgElement = new Image();
+            imgElement.src = img.src;
+            imgElement.onload = function() {
+                const rect = img.getBoundingClientRect();
+                const parentRect = document.getElementById('plantilla').getBoundingClientRect();
+                const x = rect.left - parentRect.left;
+                const y = rect.top - parentRect.top;
+                contexto.drawImage(imgElement, x, y, rect.width, rect.height);
+                resolve();
+            }
+        });
+    });
+
+    // Esperar a que todas las imágenes se hayan cargado y dibujado
+    Promise.all(promesas).then(() => {
+        // Dibuja el texto en el canvas, asegurando que esté por encima de las imágenes
+        const texto = document.getElementById('modificarTexto').value;
+        const textoX = canvas.width / 2;
+        const textoY = canvas.height - 20; // Ajusta este valor para mover el texto más hacia abajo
+
+        contexto.font = 'bold 24px Arial';
+        contexto.fillStyle = '#1bb1f7'; // Asegura que el texto sea del color deseado
+        contexto.textAlign = 'center';
+        contexto.textBaseline = 'bottom'; // Asegura que el texto se alinee correctamente con el fondo
+        contexto.fillText(texto, textoX, textoY);
+    });
+}
+
+// Carrusel de imágenes
+let imagenesCarrusel = document.querySelectorAll('#carrusel img');
+let indiceActual = 0;
+
+function changeImage() {
+    imagenesCarrusel[indiceActual].classList.remove('active');
+    indiceActual = (indiceActual + 1) % imagenesCarrusel.length;
+    imagenesCarrusel[indiceActual].classList.add('active');
+}
+
+setInterval(changeImage, 3000); // Cambia la imagen cada 3 segundos
+
+    </script>
+</body>
+</html>
